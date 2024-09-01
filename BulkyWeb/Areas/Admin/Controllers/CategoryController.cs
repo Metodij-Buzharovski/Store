@@ -4,6 +4,7 @@ using BulkyBook.Models;
 using Microsoft.AspNetCore.Mvc;
 namespace BulkyBookWeb.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -16,7 +17,6 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             List<Category> objCategoryList = _unitOfWork.Category.GetAll().ToList();
             return View(objCategoryList);
         }
-
         public IActionResult Create()
         {
             return View();
@@ -28,7 +28,6 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             {
                 ModelState.AddModelError("name", "The DisplayOrder cannot exactly match the Name.");
             }
-
             if (ModelState.IsValid)
             {
                 _unitOfWork.Category.Add(obj);
@@ -37,8 +36,8 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
             return View();
-
         }
+
         public IActionResult Edit(int? id)
         {
             if (id == null || id == 0)
@@ -74,7 +73,6 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
                 return NotFound();
             }
             Category? categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
-
             if (categoryFromDb == null)
             {
                 return NotFound();
