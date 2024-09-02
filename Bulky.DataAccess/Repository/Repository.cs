@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using BulkyBook.DataAccess.Repository.IRepository;
 using BulkyBook.DataAcess.Data;
 using Microsoft.EntityFrameworkCore;
+
 namespace BulkyBook.DataAccess.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
@@ -26,6 +27,7 @@ namespace BulkyBook.DataAccess.Repository
         {
             dbSet.Add(entity);
         }
+
         public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
@@ -41,6 +43,7 @@ namespace BulkyBook.DataAccess.Repository
             return query.FirstOrDefault();
 
         }
+
         public IEnumerable<T> GetAll(string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
@@ -59,6 +62,7 @@ namespace BulkyBook.DataAccess.Repository
         {
             dbSet.Remove(entity);
         }
+
         public void RemoveRange(IEnumerable<T> entity)
         {
             dbSet.RemoveRange(entity);

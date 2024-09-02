@@ -7,6 +7,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+
 namespace BulkyBook.DataAccess.Repository
 {
     public class ProductRepository : Repository<Product>, IProductRepository
@@ -16,6 +17,7 @@ namespace BulkyBook.DataAccess.Repository
         {
             _db = db;
         }
+
 
 
         public void Update(Product obj)
